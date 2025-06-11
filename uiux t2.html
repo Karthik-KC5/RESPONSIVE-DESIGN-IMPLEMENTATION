@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Responsive Webpage Example</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --color-bg: #f9fafb;
+    --color-primary: #2563eb;
+    --color-text-dark: #111827;
+    --color-text-light: #6b7280;
+    --color-white: #fff;
+    --border-radius: 12px;
+    --transition: all 0.3s ease;
+    --max-width: 1200px;
+    --spacing: 16px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text-dark);
+    line-height: 1.5;
+    font-size: 16px;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--color-primary);
+  }
+  a:hover,
+  a:focus {
+    text-decoration: underline;
+    outline: none;
+  }
+
+  header {
+    background: var(--color-white);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing);
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing) 0;
+  }
+
+  .logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    user-select: none;
+  }
+
+  /* Desktop nav */
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+  }
+
+  .nav-links li a {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-text-dark);
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: var(--transition);
+  }
+
+  .nav-links li a:hover,
+  .nav-links li a:focus {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    outline: none;
+  }
+
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+  }
+
+  .hamburger span {
+    width: 25px;
+    height: 3px;
+    background: var(--color-primary);
+    border-radius: 2px;
+    transition: var(--transition);
+  }
+
+  /* Mobile Nav */
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    background: var(--color-white);
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    padding: var(--spacing);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+  }
+
+  .mobile-nav.open {
+    display: flex;
+  }
+
+  .mobile-nav a {
+    padding: 12px 0;
+    font-weight: 600;
+    color: var(--color-text-dark);
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .mobile-nav a:last-child {
+    border-bottom: none;
+  }
+  .mobile-nav a:hover,
+  .mobile-nav a:focus {
+    color: var(--color-primary);
+    outline: none;
+  }
+
+  main {
+    padding: 48px var(--spacing);
+  }
+
+  .hero {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 24px;
+  }
+
+  .hero p {
+    font-size: 1.125rem;
+    color: var(--color-text-light);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .btn-primary {
+    margin-top: 32px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    padding: 14px 36px;
+    font-size: 1.125rem;
+    font-weight: 600;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .btn-primary:hover,
+  .btn-primary:focus {
+    background-color: #1e40af;
+    outline: none;
+  }
+
+  section.features {
+    display: grid;
+    gap: 24px;
+  }
+
+  .feature-card {
+    background: var(--color-white);
+    padding: 24px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    text-align: center;
+    transition: var(--transition);
+  }
+
+  .feature-card:hover,
+  .feature-card:focus-within {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transform: translateY(-4px);
+    outline: none;
+  }
+
+  .feature-icon {
+    font-size: 3rem;
+    color: var(--color-primary);
+    margin-bottom: 16px;
+  }
+
+  .feature-title {
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+  }
+
+  .feature-desc {
+    font-size: 1rem;
+    color: var(--color-text-light);
+  }
+
+  /* Footer */
+  footer {
+    background: var(--color-white);
+    padding: 32px var(--spacing);
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+  }
+
+  footer .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  footer p {
+    color: var(--color-text-light);
+    font-size: 0.875rem;
+    margin: 0;
+  }
+
+  /* Responsive */
+
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+    }
+    .hamburger {
+      display: flex;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .features {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1025px) {
+    .features {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+    .btn-primary {
+      padding: 12px 24px;
+      font-size: 1rem;
+      margin-top: 24px;
+    }
+    main {
+      padding: 32px 16px;
+    }
+  }
+
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <nav aria-label="Primary navigation">
+      <div class="logo" tabindex="0">DemoSite</div>
+      <ul class="nav-links" role="menubar">
+        <li role="none"><a role="menuitem" href="#features" tabindex="0">Features</a></li>
+        <li role="none"><a role="menuitem" href="#about" tabindex="0">About</a></li>
+        <li role="none"><a role="menuitem" href="#contact" tabindex="0">Contact</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+    <nav id="mobile-menu" class="mobile-nav" role="menu">
+      <a href="#features" role="menuitem" tabindex="-1">Features</a>
+      <a href="#about" role="menuitem" tabindex="-1">About</a>
+      <a href="#contact" role="menuitem" tabindex="-1">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" role="banner" aria-label="Hero Section">
+    <h1>Welcome to DemoSite</h1>
+    <p>Building responsive, modern web experiences that look great on any device.</p>
+    <button class="btn-primary">Get Started</button>
+  </section>
+
+  <section class="features container" id="features" aria-label="Features Section">
+    <article class="feature-card" tabindex="0" role="region" aria-labelledby="feature1-title">
+      <div class="feature-icon" aria-hidden="true">&#9881;</div>
+      <h2 class="feature-title" id="feature1-title">Customizable</h2>
+      <p class="feature-desc">Tailor every component to your unique needs with flexible options.</p>
+    </article>
+
+    <article class="feature-card" tabindex="0" role="region" aria-labelledby="feature2-title">
+      <div class="feature-icon" aria-hidden="true">&#128241;</div>
+      <h2 class="feature-title" id="feature2-title">Mobile Friendly</h2>
+      <p class="feature-desc">Your site will adapt seamlessly to any screen size or device.</p>
+    </article>
+
+    <article class="feature-card" tabindex="0" role="region" aria-labelledby="feature3-title">
+      <div class="feature-icon" aria-hidden="true">&#9889;</div>
+      <h2 class="feature-title" id="feature3-title">Fast & Performant</h2>
+      <p class="feature-desc">Optimized code ensures speedy load times and smooth interactions.</p>
+    </article>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2024 DemoSite. All rights reserved.</p>
+    <p><a href="#contact">Privacy Policy</a></p>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.querySelector('.hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  function toggleMenu() {
+    const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+    hamburger.setAttribute('aria-expanded', String(!expanded));
+    mobileMenu.classList.toggle('open');
+
+    // Manage tab index for mobile menu links
+    const links = mobileMenu.querySelectorAll('a');
+    links.forEach(link => {
+      if (mobileMenu.classList.contains('open')) {
+        link.tabIndex = 0;
+      } else {
+        link.tabIndex = -1;
+      }
+    });
+  }
+
+  hamburger.addEventListener('click', toggleMenu);
+
+  // Close mobile menu on window resize > 768
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+      hamburger.setAttribute('aria-expanded', 'false');
+      mobileMenu.classList.remove('open');
+      mobileMenu.querySelectorAll('a').forEach(link => link.tabIndex = -1);
+    }
+  });
+
+  // Initialize tabIndex to -1 for mobile nav links
+  mobileMenu.querySelectorAll('a').forEach(link => link.tabIndex = -1);
+</script>
+</body>
+</html>
+
